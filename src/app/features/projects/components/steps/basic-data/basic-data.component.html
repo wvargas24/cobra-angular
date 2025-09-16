@@ -1,65 +1,71 @@
-<div *ngIf="form && formStructure.length > 0" [formGroup]="form" class="p-fluid">
-    <ng-container *ngFor="let field of formStructure; let i = index">
+<div *ngIf="form" [formGroup]="form" class="p-fluid">
+    <!-- Itera sobre cada grupo (sección) para crear una tarjeta -->
+    <ng-container *ngFor="let group of groupedFormStructure">
+        <p-card styleClass="mb-4">
+            <!-- Usa el nombre de la sección como título de la tarjeta -->
+            <ng-template pTemplate="title">
+                {{ group.section }}
+            </ng-template>
 
-        <!-- Renderiza el encabezado de la sección solo cuando cambia -->
-        <div *ngIf="i === 0 || field.section !== formStructure[i-1].section" class="mt-4 mb-3">
-            <h4>{{ field.section }}</h4>
-            <hr>
-        </div>
+            <ng-template pTemplate="content">
+                <!-- Itera sobre los campos dentro del grupo actual -->
+                <ng-container *ngFor="let field of group.fields">
+                    <div class="p-field mb-3">
+                        <label [for]="field.name">{{ field.label }}</label>
 
-        <!-- Contenedor para cada campo del formulario -->
-        <div class="p-field mb-3">
-            <label [for]="field.name">{{ field.label }}</label>
+                        <div [ngSwitch]="field.type">
+                            <!-- Campo de Texto -->
+                            <input *ngSwitchCase="'text'" pInputText [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" [maxlength]="field.maxLength">
 
-            <div [ngSwitch]="field.type">
+                            <!-- Campo de Textarea -->
+                            <textarea *ngSwitchCase="'textarea'" pInputTextarea [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" rows="3"></textarea>
 
-                <!-- Campo de Texto -->
-                <input *ngSwitchCase="'text'" pInputText [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" [maxlength]="field.maxLength">
+                            <!-- Campo de Moneda -->
+                            <p-inputNumber *ngSwitchCase="'currency'" [id]="field.name" [formControlName]="field.name" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
 
-                <!-- Campo de Textarea -->
-                <textarea *ngSwitchCase="'textarea'" pInputTextarea [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" rows="3"></textarea>
+                            <!-- Selector (Dropdown) -->
+                            <ng-container *ngSwitchCase="'select'">
+                                <p-dropdown [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''"
+                                            [options]="(field.name === 'lineOfAction' ? (linesOfAction$ | async) : field.name === 'type' ? (types$ | async) : field.name === 'subtype' ? (subtypes$ | async) : field.name === 'supervisor' ? (supervisors$ | async) : [])!"
+                                            optionLabel="name" optionValue="id">
+                                </p-dropdown>
+                            </ng-container>
 
-                <!-- Campo de Moneda -->
-                <p-inputNumber *ngSwitchCase="'currency'" [id]="field.name" [formControlName]="field.name" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                            <!-- Selector de Indicadores (MODIFICADO) -->
+                            <div *ngSwitchCase="'indicator-selector'">
+                                <!-- Llama a la función con el nombre del campo y el origen de datos -->
+                                <button pButton type="button" [label]="field.buttonLabel" (click)="showIndicatorModal(field.name, field.indicatorSource)" class="p-button-secondary mb-2"></button>
 
-                <!-- Selector (Dropdown) -->
-                <ng-container *ngSwitchCase="'select'">
-                    <p-dropdown [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" [options]="(field.name === 'lineOfAction' ? (linesOfAction$ | async) : 
-                        field.name === 'type' ? (types$ | async) : 
-                        field.name === 'subtype' ? (subtypes$ | async) : 
-                        field.name === 'supervisor' ? (supervisors$ | async) : [])!" optionLabel="name" optionValue="id">
-                    </p-dropdown>
+                                <p-table #indicatorTable [value]="form.get(field.name)?.value || []" styleClass="p-datatable-sm">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Indicador</th>
+                                            <th>Unidad de Medida</th>
+                                            <th>Meta</th>
+                                            <th></th>
+                                        </tr>
+                                    </ng-template>
+                                    <!-- Añadimos 'let i = index' para obtener el índice -->
+                                    <ng-template pTemplate="body" let-indicator let-i="rowIndex">
+                                        <tr>
+                                            <td>{{ indicator.name }}</td>
+                                            <td>{{ indicator.unit }}</td>
+                                            <td>{{ indicator.goal }}</td>
+                                            <!-- Llama a la función de eliminar con el índice y el nombre del campo -->
+                                            <td><button pButton type="button" icon="pi pi-trash" (click)="removeIndicator(i, field.name)" class="p-button-danger p-button-text"></button></td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="4">No se han añadido indicadores.</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                    </div>
                 </ng-container>
-
-                <!-- Selector de Indicadores -->
-                <div *ngSwitchCase="'indicator-selector'">
-                    <button pButton type="button" [label]="field.buttonLabel" class="p-button-secondary mb-2"></button>
-                    <p-table #indicatorTable [value]="form.get(field.name)?.value || []" styleClass="p-datatable-sm">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Indicador</th>
-                                <th>Unidad de Medida</th>
-                                <th>Meta</th>
-                                <th></th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-indicator>
-                            <tr>
-                                <td>{{ indicator.name }}</td>
-                                <td>{{ indicator.unit }}</td>
-                                <td>{{ indicator.goal }}</td>
-                                <td><button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text"></button></td>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="emptymessage">
-                            <tr>
-                                <td colspan="4">No se han añadido indicadores.</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-
-            </div>
-        </div>
+            </ng-template>
+        </p-card>
     </ng-container>
 </div>

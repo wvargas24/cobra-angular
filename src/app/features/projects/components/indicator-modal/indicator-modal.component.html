@@ -1,0 +1,27 @@
+<div class="p-fluid" *ngIf="form" [formGroup]="form">
+    <div class="p-field mb-3">
+        <label for="indicator">Indicador</label>
+        <!-- Dropdown vinculado al formControl 'indicator' y poblado con la lista de indicadores -->
+        <p-dropdown id="indicator" formControlName="indicator" [options]="indicators" optionLabel="name" placeholder="Selecciona un indicador">
+        </p-dropdown>
+    </div>
+
+    <div class="p-field mb-3">
+        <label for="unit">Unidad de Medida</label>
+        <!-- Campo de solo lectura vinculado al formControl 'unit' -->
+        <input id="unit" type="text" pInputText formControlName="unit">
+    </div>
+
+    <div class="p-field mb-3">
+        <label for="goal">Meta</label>
+        <!-- Input numérico vinculado al formControl 'goal' -->
+        <p-inputNumber id="goal" formControlName="goal" mode="decimal">
+        </p-inputNumber>
+    </div>
+</div>
+
+<!-- Botones de acción vinculados a los métodos y al estado de validez del formulario -->
+<div class="p-dialog-footer mt-4 text-right">
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="cancel()"></button>
+    <button pButton type="button" label="Guardar" icon="pi pi-check" (click)="save()" [disabled]="!form.valid"></button>
+</div>

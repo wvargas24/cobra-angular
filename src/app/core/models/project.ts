@@ -19,4 +19,5 @@ export interface Project {
     myProject: boolean;
     numvalejecobra: number; // "ejecuciones de proyecto"
     datefechaalimen: string; // "fecha de alimentacion"
+    indicators?: any[]; // Añadimos la propiedad opcional para los indicadores
 }

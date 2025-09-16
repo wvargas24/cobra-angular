@@ -1,0 +1,107 @@
+:host ::ng-deep {
+
+    .project-card {
+        overflow: hidden;
+        display: block;
+        height: 100%;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+
+        .p-card-body {
+            padding: 0;
+        }
+
+        .p-card-header {
+            padding: 0;
+            border-radius: 20px;
+            overflow: hidden;
+
+            .card-image-container {
+                position: relative;
+                overflow: hidden;
+
+                .project-image {
+                    width: 100%;
+                    height: 250px;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .overlay-content {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 1rem;
+
+                    .favorite-icon {
+                        order: 2;
+
+                        .pi {
+                            color: red;
+                            font-size: 20px;
+                        }
+                    }
+
+                    .project-status {
+                        order: 1;
+                        background-color: var(--primary-color);
+                        color: white;
+                        padding: 0.25rem 1rem;
+                        border-radius: 40px;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+
+                        &.status-executing {
+                            background: var(--green-100);
+                            border-color: var(--green-500);
+                            color: var(--green-500);
+                        }
+
+                        &.status-pending {
+                            background: var(--yellow-100);
+                            border-color: var(--yellow-500);
+                            color: var(--yellow-700);
+                        }
+
+                        &.status-modification {
+                            background: var(--blue-100);
+                            border-color: var(--blue-500);
+                            color: var(--blue-500);
+                        }
+
+                        &.status-cancelled {
+                            background: var(--red-100);
+                            border-color: var(--red-500);
+                            color: var(--red-500);
+                        }
+                    }
+                }
+            }
+        }
+
+        .p-card-content {
+            padding: 1rem 0;
+        }
+
+        .p-card-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--surface-d);
+        }
+
+        .p-card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .p-card-subtitle {
+            color: var(--text-color-secondary);
+            font-size: 0.9rem;
+        }
+    }
+}

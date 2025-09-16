@@ -1,0 +1,12 @@
+<div class="grid">
+    <div class="col-12 md:col-7">
+        <app-project-grid [projects]="projects" [columnClass]="'lg:col-4'"></app-project-grid>
+    </div>
+
+    <div class="col-12 md:col-5">
+        <div class="sticky h-full-viewport-minus-header">
+            <app-project-map [projects]="projects" (viewChanged)="mapViewChanged.emit($event)">
+            </app-project-map>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="message-container flex mt-3" [ngClass]="{'justify-content-end': message.isUser, 'pr-2':!message.isUser}">
+
+    <div *ngIf="!message.isUser" class="avatar-container mr-2">
+        <p-avatar label="A" styleClass="p-mr-2" shape="circle"></p-avatar>
+    </div>
+
+    <div class="message-bubble flex flex-column px-3 py-2 border-round-xl shadow-1" [ngClass]="{'bg-primary': message.isUser, 'text-white': message.isUser, 'surface-card': !message.isUser}">
+
+        <div *ngIf="message.isLoading" class="loading-dots">
+            <div class="item-dot"></div>
+            <div class="item-dot"></div>
+            <div class="item-dot"></div>
+        </div>
+
+        <div *ngIf="!message.isLoading">
+            <img *ngIf="message.imageUrl" [src]="message.imageUrl" alt="AI Image" class="block mb-2 chat-image" />
+
+            <div *ngIf="message.text" class="m-0 message-text" [innerHTML]="message.text | safeHtml"></div>
+        </div>
+
+        <div *ngIf="message.isError">
+            <p class="m-0 text-danger">An error occurred.</p>
+        </div>
+    </div>
+
+    <div *ngIf="message.isUser" class="avatar-container ml-2">
+        <p-avatar label="U" styleClass="p-mr-2" shape="circle"></p-avatar>
+    </div>
+</div>

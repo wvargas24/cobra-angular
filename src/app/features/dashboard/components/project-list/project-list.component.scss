@@ -1,0 +1,57 @@
+.item-image-container {
+    position: relative;
+
+    .overlay-content {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem;
+
+        .favorite-icon {
+            order: 2;
+
+            .pi {
+                color: red;
+                font-size: 20px;
+            }
+        }
+
+        .project-status {
+            order: 1;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+
+            &.status-executing {
+                background: var(--green-100);
+                border-color: var(--green-500);
+                color: var(--green-500);
+            }
+
+            &.status-pending {
+                background: var(--yellow-100);
+                border-color: var(--yellow-500);
+                color: var(--yellow-700);
+            }
+
+            &.status-modification {
+                background: var(--blue-100);
+                border-color: var(--blue-500);
+                color: var(--blue-500);
+            }
+
+            &.status-cancelled {
+                background: var(--red-100);
+                border-color: var(--red-500);
+                color: var(--red-500);
+            }
+        }
+    }
+}

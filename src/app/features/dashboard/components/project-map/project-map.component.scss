@@ -1,0 +1,28 @@
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.map-frame {
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+}
+
+.leaflet-popup-content {
+    min-width: 300px;
+    margin: 10px;
+}
+
+::ng-deep .leaflet-popup-content-wrapper,
+::ng-deep .leaflet-popup-tip {
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--surface-overlay);
+}

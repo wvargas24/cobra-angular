@@ -1,0 +1,44 @@
+<p-card styleClass="project-card card p-0">
+    <ng-template pTemplate="header">
+        <div class="card-image-container">
+            <img [src]="projectImageUrl" (error)="handleImageError()" [alt]="project.name" class="project-image" />
+
+            <div class="overlay-content">
+                <div class="project-status" [ngClass]="getStatusClass(project.state)">
+                    <span>{{ project.state | textFormat }}</span>
+                </div>
+                <div class="favorite-icon">
+                    <p-button icon="pi pi-heart" styleClass="p-button-text p-button-sm "></p-button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="flex flex-column gap-2">
+        <h6 class="m-0">{{ project.name | textFormat }}</h6>
+        <h6 class="font-light m-0">{{ project.lineOfAction | textFormat }}</h6>
+
+        <div class="flex align-items-center">
+            <div class="flex-grow-1">
+                <p-progressBar [value]="project.progress"></p-progressBar>
+            </div>
+            <span class="ml-2 font-semibold">{{ project.progress }}%</span>
+        </div>
+
+        <div class="flex flex-column gap-1">
+            <div class="flex align-items-center">
+                <span class="font-light">{{ project.type | textFormat }}</span>
+            </div>
+        </div>
+
+        <div class="flex justify-content-between align-items-center">
+            <span class="text-color-secondary font-semibold">Presupuesto:</span>
+            <h6 class="font-semibold m-0">{{ project.value ? (project.value | currency:'USD':'symbol':'1.0-0') : '$0' }}</h6>
+        </div>
+
+        <div class="flex justify-content-between align-items-center">
+            <span class="text-color-secondary font-semibold">Ejecutado:</span>
+            <h6 class="font-semibold m-0">{{ project.numvalejecobra ? (project.numvalejecobra | currency:'USD':'symbol':'1.0-0' ): '$0'}}</h6>
+        </div>
+    </div>
+</p-card>

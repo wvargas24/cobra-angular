@@ -1,0 +1,25 @@
+<div class="chat-container flex flex-column justify-content-between">
+    <div #messageContainer class="chat-body lg:py-4 overflow-y-auto">
+        <app-welcome-message *ngIf="!conversationStarted"></app-welcome-message>
+
+        <div #messageList class="conversation-messages" *ngIf="conversationStarted">
+            <app-chat-message *ngFor="let message of messages; let i = index" [message]="message"></app-chat-message>
+        </div>
+    </div>
+
+    <div class="chat-footer pt-3 border-top-1 surface-border">
+        <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+            <div class="p-inputgroup">
+                <input type="text" pInputText placeholder="Pregunta lo que quieras..." formControlName="message">
+                <!-- <button pRipple class="p-button p-button-secondary w-full sm:w-auto justify-content-center text-xl" (click)="op.toggle($event)">😀</button> -->
+                <button type="submit" pButton icon="pi pi-send" [disabled]="chatForm.invalid || isLoadingResponse"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-overlayPanel #op styleClass="w-full sm:w-30rem">
+    <ng-template pTemplate>
+        <button *ngFor="let emoji of emojis;" pButton pRipple (click)="op.hide(); onEmojiSelect(emoji)" type="button" [label]="emoji" class="p-2 p-button-text text-2xl"></button>
+    </ng-template>
+</p-overlayPanel>

@@ -1,0 +1,13 @@
+<div class="p-fluid">
+    <div *ngIf="projects.length > 0">
+        <div class="grid m-0">
+            <div class="col-12 p-2 md:col-6" [ngClass]="columnClass" *ngFor="let project of projects | slice:first:first+rows">
+                <app-project-card [project]="project"></app-project-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4" *ngIf="projects.length > rows">
+        <p-paginator [rows]="rows" [totalRecords]="projects.length" (onPageChange)="onPageChange($event)"></p-paginator>
+    </div>
+</div>

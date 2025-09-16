@@ -1,0 +1,87 @@
+.dashboard-views-container {
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+
+    app-project-map {
+        display: block;
+        height: 500px;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+    }
+}
+
+.general-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 15px 50px;
+    background: radial-gradient(404.66% 69.71% at 100% 100%, rgb(180 98 219) 0%, rgba(218, 124, 186, 0) 100%), radial-gradient(60.81% 110.42% at 50% -14.65%, #c1b9ea 0%, rgba(234, 205, 185, 0.05) 69.05%, rgba(234, 205, 185, 0) 100%), radial-gradient(776.51% 82.35% at -0.52% 98.03%, #e1bcf3 0%, #D8C4CD 42.2%, rgba(216, 196, 205, 0) 100%), rgb(183 98 219 / 70%);
+}
+
+:host ::ng-deep {
+    .p-card-content {
+        padding: 0;
+    }
+
+    app-project-map {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        max-height: calc(100vh - 225px);
+        overflow: hidden;
+        position: relative;
+        border-radius: 20px;
+    }
+
+    .chat-container {
+        .chat-body {
+            height: calc(80vh - 180px);
+        }
+    }
+
+    .section-filters {
+        transform: translateY(-50px);
+        margin-bottom: -50px;
+        transition: all 0.3s ease-in;
+
+        .p-inputgroup-addon,
+        .p-inputtext,
+        .p-dropdown {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #efefef;
+            border-radius: 0;
+        }
+
+        .filters-grid {
+            background-color: #fff;
+            border-radius: 50px;
+            max-width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        &.is-scrolled {
+            background-color: #f6f8fc;
+            border-radius: 20px;
+            transform: translateY(0%);
+            margin-bottom: 0;
+
+
+            .summary-grid {
+                .text-4xl {
+                    // font-size: 1.2rem !important;
+                }
+            }
+        }
+    }
+
+    .layout-dark {
+        .section-filters {
+            .filters-grid {
+                background: linear-gradient(180deg, #2E323F 0%, #0A061A 100%);
+            }
+        }
+    }
+}

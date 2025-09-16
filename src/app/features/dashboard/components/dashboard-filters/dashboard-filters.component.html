@@ -1,0 +1,73 @@
+<p-card styleClass="card p-2 filters-grid mb-3 mt-2">
+    <form [formGroup]="filterForm">
+        <div class="grid formgrid">
+            <div class="col-12 md:col-6 lg:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-search text-primary"></i></span>
+                    <span class="p-float-label">
+                        <input id="searchTerm" type="text" pInputText formControlName="searchTerm" placeholder="">
+                        <label for="searchTerm">Buscar proyectos...</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-3">
+                <span class="p-float-label">
+                    <p-dropdown id="line-action" [options]="options?.lineOfActionOptions" placeholder="" formControlName="selectedLineOfAction" [showClear]="true"></p-dropdown>
+                    <label for="line-action" class="block font-medium mb-2">Linea de Acción</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-3">
+                <span class="p-float-label">
+                    <p-dropdown id="status" [options]="options?.statusOptions" placeholder="" formControlName="selectedStatus" [showClear]="true"></p-dropdown>
+                    <label for="status" class="block font-medium mb-2">Estado</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-2">
+                <p-button label="Más Filtros" icon="pi pi-sliders-h" (onClick)="toggleAdvancedFilters()"></p-button>
+            </div>
+        </div>
+
+        <div class="pt-4" *ngIf="showAdvancedFilters">
+            <div class="grid">
+                <div class="col-12 md:col-3">
+                    <span class="p-float-label">
+                        <p-dropdown id="type-dropdown" [options]="options?.typeOptions" placeholder="" formControlName="selectedType" [showClear]="true"></p-dropdown>
+                        <label for="type-dropdown" class="block font-medium mb-2">Tipo de proyecto</label>
+                    </span>
+                </div>
+
+                <div class="col-12 md:col-3">
+                    <span class="p-float-label">
+                        <p-dropdown id="subtype-dropdown" [options]="options?.subtypeOptions" placeholder="" formControlName="selectedSubtype" [showClear]="true"></p-dropdown>
+                        <label for="subtype-dropdown" class="block font-medium mb-2">Subtipo de proyecto</label>
+                    </span>
+                </div>
+
+                <div class="col-12 md:col-3">
+                    <label for="budget-slider" class="block font-medium mb-2">Rango de Presupuesto</label>
+                    <p-slider formControlName="budgetRange" [range]="true" [min]="0" [max]="100000000" styleClass="mx-2"></p-slider>
+                    <div class="flex justify-content-between mt-2">
+                        <span>{{ filterForm.get('budgetRange')?.value[0] | currency:'USD':'symbol':'1.0-0' }}</span>
+                        <span>{{ filterForm.get('budgetRange')?.value[1] | currency:'USD':'symbol':'1.0-0' }}</span>
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-3">
+                    <label for="progress-slider" class="block font-medium mb-2">Rango de Avance</label>
+                    <p-slider formControlName="progressRange" [range]="true" [min]="0" [max]="100" styleClass="mx-2"></p-slider>
+                    <div class="flex justify-content-between mt-2">
+                        <span>{{ filterForm.get('progressRange')?.value[0] }}%</span>
+                        <span>{{ filterForm.get('progressRange')?.value[1] }}%</span>
+                    </div>
+                </div>
+
+                <div class="col-12 flex justify-content-end py-0">
+                    <p-button label="Limpiar Filtros" icon="pi pi-times" styleClass="p-button-text" (click)="clearFilters()"></p-button>
+                </div>
+            </div>
+        </div>
+    </form>
+</p-card>

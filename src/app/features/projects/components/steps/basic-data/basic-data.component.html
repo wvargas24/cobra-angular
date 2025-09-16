@@ -1,0 +1,65 @@
+<div *ngIf="form && formStructure.length > 0" [formGroup]="form" class="p-fluid">
+    <ng-container *ngFor="let field of formStructure; let i = index">
+
+        <!-- Renderiza el encabezado de la sección solo cuando cambia -->
+        <div *ngIf="i === 0 || field.section !== formStructure[i-1].section" class="mt-4 mb-3">
+            <h4>{{ field.section }}</h4>
+            <hr>
+        </div>
+
+        <!-- Contenedor para cada campo del formulario -->
+        <div class="p-field mb-3">
+            <label [for]="field.name">{{ field.label }}</label>
+
+            <div [ngSwitch]="field.type">
+
+                <!-- Campo de Texto -->
+                <input *ngSwitchCase="'text'" pInputText [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" [maxlength]="field.maxLength">
+
+                <!-- Campo de Textarea -->
+                <textarea *ngSwitchCase="'textarea'" pInputTextarea [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" rows="3"></textarea>
+
+                <!-- Campo de Moneda -->
+                <p-inputNumber *ngSwitchCase="'currency'" [id]="field.name" [formControlName]="field.name" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+
+                <!-- Selector (Dropdown) -->
+                <ng-container *ngSwitchCase="'select'">
+                    <p-dropdown [id]="field.name" [formControlName]="field.name" [placeholder]="field.placeholder || ''" [options]="(field.name === 'lineOfAction' ? (linesOfAction$ | async) : 
+                        field.name === 'type' ? (types$ | async) : 
+                        field.name === 'subtype' ? (subtypes$ | async) : 
+                        field.name === 'supervisor' ? (supervisors$ | async) : [])!" optionLabel="name" optionValue="id">
+                    </p-dropdown>
+                </ng-container>
+
+                <!-- Selector de Indicadores -->
+                <div *ngSwitchCase="'indicator-selector'">
+                    <button pButton type="button" [label]="field.buttonLabel" class="p-button-secondary mb-2"></button>
+                    <p-table #indicatorTable [value]="form.get(field.name)?.value || []" styleClass="p-datatable-sm">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Indicador</th>
+                                <th>Unidad de Medida</th>
+                                <th>Meta</th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-indicator>
+                            <tr>
+                                <td>{{ indicator.name }}</td>
+                                <td>{{ indicator.unit }}</td>
+                                <td>{{ indicator.goal }}</td>
+                                <td><button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text"></button></td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="4">No se han añadido indicadores.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+
+            </div>
+        </div>
+    </ng-container>
+</div>

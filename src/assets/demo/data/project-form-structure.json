@@ -1,0 +1,91 @@
+[
+  {
+    "step": 1,
+    "section": "Clasificación del Proyecto",
+    "name": "lineOfAction",
+    "label": "Línea de Acción",
+    "type": "select",
+    "optionsSource": "linesOfAction",
+    "placeholder": "Selecciona una línea de acción"
+  },
+  {
+    "step": 1,
+    "section": "Clasificación del Proyecto",
+    "name": "type",
+    "label": "Tipo",
+    "type": "select",
+    "dependsOn": "lineOfAction",
+    "optionsSource": "types",
+    "placeholder": "Selecciona un tipo"
+  },
+  {
+    "step": 1,
+    "section": "Clasificación del Proyecto",
+    "name": "subtype",
+    "label": "Subtipo",
+    "type": "select",
+    "dependsOn": "type",
+    "optionsSource": "subtypes",
+    "placeholder": "Selecciona un subtipo"
+  },
+  {
+    "step": 1,
+    "section": "Detalles del Proyecto",
+    "name": "abbreviatedName",
+    "label": "Nombre Abreviado",
+    "type": "text",
+    "maxLength": 255,
+    "placeholder": "Máximo 255 caracteres"
+  },
+  {
+    "step": 1,
+    "section": "Detalles del Proyecto",
+    "name": "supervisor",
+    "label": "Supervisor",
+    "type": "select",
+    "optionsSource": "supervisors",
+    "placeholder": "Selecciona un supervisor"
+  },
+  {
+    "step": 1,
+    "section": "Detalles del Proyecto",
+    "name": "projectObjective",
+    "label": "Objeto del Proyecto",
+    "type": "textarea",
+    "placeholder": "Describe el objetivo del proyecto"
+  },
+  {
+    "step": 1,
+    "section": "Detalles del Proyecto",
+    "name": "scope",
+    "label": "Alcance",
+    "type": "textarea",
+    "placeholder": "Describe el alcance del proyecto"
+  },
+  {
+    "step": 1,
+    "section": "Detalles del Proyecto",
+    "name": "observations",
+    "label": "Observaciones",
+    "type": "textarea",
+    "placeholder": "Añade observaciones adicionales"
+  },
+  {
+    "step": 1,
+    "section": "Indicadores",
+    "name": "impactIndicators",
+    "type": "indicator-selector",
+    "buttonLabel": "Seleccionar Indicadores de Impacto",
+    "modalTitle": "Añadir Indicador de Impacto",
+    "indicatorSource": "impactIndicators"
+  },
+  {
+    "step": 1,
+    "section": "Indicadores",
+    "name": "reachIndicators",
+    "type": "indicator-selector",
+    "buttonLabel": "Seleccionar Indicadores de Alcance",
+    "modalTitle": "Añadir Indicador de Alcance",
+    "indicatorSource": "reachIndicators"
+  }
+]

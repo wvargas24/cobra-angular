@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class DashboardChartsComponent {
   @Input() header: string = '';
-  @Input() type: string = 'pie';
+  @Input() type: 'bar' | 'line' | 'scatter' | 'bubble' | 'pie' | 'doughnut' | 'polarArea' | 'radar' | undefined = 'pie';
   @Input() data: any;
   @Input() options: any;
 }

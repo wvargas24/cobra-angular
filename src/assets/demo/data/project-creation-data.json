@@ -1,0 +1,198 @@
+{
+  "linesOfAction": [
+    {
+      "id": 1,
+      "name": "Entidades Publicas",
+      "types": [
+        {
+          "id": 101,
+          "name": "Comercialización De Combustibles En Zona De Frontera",
+          "subtypes": [{ "id": 10101, "name": "Comercialización De Combustibles En Zona De Frontera" }]
+        },
+        {
+          "id": 102,
+          "name": "Compensación Transporte Nariño",
+          "subtypes": [{ "id": 10201, "name": "Compensación Transporte Nariño" }]
+        },
+        {
+          "id": 103,
+          "name": "Gestión De La Información Subsector De Hidrocarburos",
+          "subtypes": [{ "id": 10301, "name": "Gestión De La Información Subsector De Hidrocarburos" }]
+        },
+        {
+          "id": 104,
+          "name": "Infraestructura De Glp Nacional",
+          "subtypes": [{ "id": 10401, "name": "Infraestructura De Glp Nacional" }]
+        },
+        {
+          "id": 105,
+          "name": "Infraestructura Gas Natural Nacional",
+          "subtypes": [{ "id": 10501, "name": "Infraestructura Gas Natural Nacional" }]
+        },
+        {
+          "id": 106,
+          "name": "Mejoramiento De La Gestión De La Información (Sicom)",
+          "subtypes": [{ "id": 10601, "name": "Mejoramiento De La Gestión De La Información (Sicom)" }]
+        },
+        {
+          "id": 107,
+          "name": "Seguimiento Y Control A Combustible",
+          "subtypes": [{ "id": 10701, "name": "Seguimiento Y Control A Combustible" }]
+        },
+        {
+          "id": 108,
+          "name": "Sistema General De Regalías",
+          "subtypes": [{ "id": 10801, "name": "Sistema General De Regalías" }]
+        },
+        {
+          "id": 109,
+          "name": "Subsidios De Gas Natural",
+          "subtypes": [{ "id": 10901, "name": "Subsidios De Gas Natural" }]
+        },
+        {
+          "id": 110,
+          "name": "Sustitución De Leña",
+          "subtypes": [{ "id": 11001, "name": "Sustitución De Leña" }]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Empresa Privada",
+      "types": [
+        {
+          "id": 201,
+          "name": "Consultoria",
+          "subtypes": []
+        },
+        {
+          "id": 202,
+          "name": "Fomento Minero",
+          "subtypes": [
+            { "id": 20201, "name": "Asistencia Técnica" },
+            { "id": 20202, "name": "Comercialización Y Trazabilidad" },
+            { "id": 20203, "name": "Convenio Minamata" },
+            { "id": 20204, "name": "Coordinación Con Cooperación Internacional" },
+            { "id": 20205, "name": "Desarrollo Empresarial Y Escalamiento" },
+            { "id": 20206, "name": "Eventos De Divulgación" },
+            { "id": 20207, "name": "Fomento Minero Antioquia" },
+            { "id": 20208, "name": "Fomento Minero Boyacá" },
+            { "id": 20209, "name": "Fomento Minero Caldas" },
+            { "id": 20210, "name": "Fomento Minero Cundinamarca" },
+            { "id": 20211, "name": "Inclusión Financiera" },
+            { "id": 20212, "name": "Investigación Y Desarrollo" },
+            { "id": 20213, "name": "Planes De Coordinación Con Actores Regionales" },
+            { "id": 20214, "name": "Planes De Coordinación Con Entidades Territoriales" }
+          ]
+        },
+        {
+          "id": 203,
+          "name": "Regularización Ambiental",
+          "subtypes": [
+            { "id": 20301, "name": "Convenios Interadministrativos" },
+            { "id": 20302, "name": "Eventos De Divulgación" },
+            { "id": 20303, "name": "Normatividad" },
+            { "id": 20304, "name": "Planes De Coordinación Con Entidades Territoriales" },
+            { "id": 20305, "name": "Procesos De Regularización Acompañados" }
+          ]
+        },
+        {
+          "id": 204,
+          "name": "Regularización Minera",
+          "subtypes": [
+            { "id": 20401, "name": "Eventos De Divulgación" },
+            { "id": 20402, "name": "Normatividad" },
+            { "id": 20403, "name": "Planes De Coordinación Con Entidades Territoriales" },
+            { "id": 20404, "name": "Procesos De Regularización Acompañados" }
+          ]
+        },
+        {
+          "id": 205,
+          "name": "Seguridad Minera",
+          "subtypes": [
+            { "id": 20501, "name": "Consultoria" },
+            { "id": 20502, "name": "Normatividad" },
+            { "id": 20503, "name": "Planes De Coordinación Con Actores Regionales" },
+            { "id": 20504, "name": "Planes De Coordinación Con Entidades Territoriales" }
+          ]
+        },
+        {
+          "id": 206,
+          "name": "Subsistencia",
+          "subtypes": [
+            { "id": 20601, "name": "Consultoria" },
+            { "id": 20602, "name": "Normatividad" },
+            { "id": 20603, "name": "Planes De Coordinación Con Actores Regionales" },
+            { "id": 20604, "name": "Planes De Coordinación Con Entidades Territoriales" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Empresa Mixta",
+      "types": []
+    }
+  ],
+  "supervisors": [
+    { "id": 1, "name": "Alejandro Gutierrez" },
+    { "id": 2, "name": "Daniel Ayala" },
+    { "id": 3, "name": "Nickolay Jimenez" },
+    { "id": 4, "name": "Sebastian Correa" },
+    { "id": 5, "name": "Test Supervisor" }
+  ],
+  "impactIndicators": [
+    {
+      "id": 1,
+      "name": "% De Encuentas Con Calificacion Satisfactoria",
+      "unit": "%"
+    },
+    {
+      "id": 2,
+      "name": "Cambio En La Percepción O Actitud De La Comunidad Hacia El Uso De Energías Renovables",
+      "unit": "%"
+    },
+    {
+      "id": 3,
+      "name": "Descripción De Empleos A Generar En Explotación (Responder Solo Si Se Encuentra En Explotación)",
+      "unit": "Texto"
+    }
+  ],
+  "reachIndicators": [
+    {
+      "id": 1,
+      "name": "Actos Administrativos Expedidos",
+      "unit": "Und"
+    },
+    {
+      "id": 2,
+      "name": "Año En Que Se Espera Lograr Producción Futura De Mineral Ppal O Año En El Que Se Logró La Producción Futura De Mineral Principal",
+      "unit": "Texto"
+    },
+    {
+      "id": 3,
+      "name": "Capacidad [Mw]:",
+      "unit": "Mw"
+    },
+    {
+      "id": 4,
+      "name": "Capacidad De Planta (Responder Solo Si El Mineral Ppal Es De Oro, Cobre, Plata)",
+      "unit": "Toneladas"
+    },
+    {
+      "id": 5,
+      "name": "Capacidad Pico [Mwp]:",
+      "unit": "Mwp"
+    },
+    {
+      "id": 6,
+      "name": "Creación De Normativas O Incentivos Locales Que Promuevan Las Energías Renovables.",
+      "unit": "Und"
+    },
+    {
+      "id": 7,
+      "name": "Creditos Otorgados",
+      "unit": "Und"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ const routes: Routes = [
             },
             { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuard] },
             { path: 'ai-assistant', loadChildren: () => import('./features/ai-assistant/ai-assistant.module').then(m => m.AiAssistantModule), canActivate: [AuthGuard] },
+            { path: 'projects', loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule), canActivate: [AuthGuard] },
 
             { path: 'uikit', data: { breadcrumb: 'UI Kit' }, loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
             { path: 'utilities', data: { breadcrumb: 'Utilities' }, loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },

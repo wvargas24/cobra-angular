@@ -55,7 +55,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Crear Proyecto',
                         icon: 'pi pi-plus',
-                        routerLink: ['/proyectos/crear']
+                        routerLink: ['/projects/new']
                     },
                     {
                         label: 'Consultar Proyectos',

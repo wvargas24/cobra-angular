@@ -1,0 +1,90 @@
+:host ::ng-deep {
+    #draft-controls {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .stepper-container {
+        .p-steps {
+            .p-steps-item {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+
+                &::before {
+                    content: none;
+                }
+
+                &:not(:last-child)::after {
+                    content: '';
+                    position: absolute;
+                    top: 1.25rem;
+                    left: 60%;
+                    width: 80%;
+                    height: 1px;
+                    background-color: var(--surface-border);
+                    z-index: 5;
+                }
+
+                .p-steps-number {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    color: white;
+                    background-color: var(--surface-border);
+                    border: 3px solid var(--surface-border);
+                    transition: background-color 0.3s, border-color 0.3s;
+                    z-index: 10;
+                }
+
+                .p-steps-title {
+                    margin-top: 0.75rem;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: var(--text-color-secondary);
+                    transition: color 0.3s;
+                }
+
+                &.p-highlight {
+                    .p-steps-number {
+                        background-color: var(--primary-color);
+                        border-color: var(--primary-color);
+                    }
+
+                    .p-steps-title {
+                        color: var(--primary-color);
+                        font-weight: 600;
+                    }
+                }
+
+                &.p-steps-done {
+                    .p-steps-number {
+                        background-color: var(--green-500);
+                        border-color: var(--green-500);
+                    }
+
+                    .p-steps-title {
+                        color: var(--text-color);
+                    }
+
+                    &::after {
+                        background-color: var(--green-500);
+                    }
+                }
+            }
+        }
+    }
+
+}

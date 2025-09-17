@@ -9,83 +9,83 @@
         border-radius: 0.5rem;
     }
 
-    .stepper-container {
-        .p-steps {
-            .p-steps-item {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                position: relative;
-                cursor: pointer;
+    // .stepper-container {
+    //     .p-steps {
+    //         .p-steps-item {
+    //             flex: 1;
+    //             display: flex;
+    //             flex-direction: column;
+    //             align-items: center;
+    //             position: relative;
+    //             cursor: pointer;
 
-                &::before {
-                    content: none;
-                }
+    //             &::before {
+    //                 content: none;
+    //             }
 
-                &:not(:last-child)::after {
-                    content: '';
-                    position: absolute;
-                    top: 1.25rem;
-                    left: 60%;
-                    width: 80%;
-                    height: 1px;
-                    background-color: var(--surface-border);
-                    z-index: 5;
-                }
+    //             &:not(:last-child)::after {
+    //                 content: '';
+    //                 position: absolute;
+    //                 top: 1.25rem;
+    //                 left: 60%;
+    //                 width: 80%;
+    //                 height: 1px;
+    //                 background-color: var(--surface-border);
+    //                 z-index: 5;
+    //             }
 
-                .p-steps-number {
-                    width: 2.5rem;
-                    height: 2.5rem;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    color: white;
-                    background-color: var(--surface-border);
-                    border: 3px solid var(--surface-border);
-                    transition: background-color 0.3s, border-color 0.3s;
-                    z-index: 10;
-                }
+    //             .p-steps-number {
+    //                 width: 2.5rem;
+    //                 height: 2.5rem;
+    //                 border-radius: 50%;
+    //                 display: flex;
+    //                 align-items: center;
+    //                 justify-content: center;
+    //                 font-weight: bold;
+    //                 color: white;
+    //                 background-color: var(--surface-border);
+    //                 border: 3px solid var(--surface-border);
+    //                 transition: background-color 0.3s, border-color 0.3s;
+    //                 z-index: 10;
+    //             }
 
-                .p-steps-title {
-                    margin-top: 0.75rem;
-                    font-size: 0.875rem;
-                    font-weight: 500;
-                    color: var(--text-color-secondary);
-                    transition: color 0.3s;
-                }
+    //             .p-steps-title {
+    //                 margin-top: 0.75rem;
+    //                 font-size: 0.875rem;
+    //                 font-weight: 500;
+    //                 color: var(--text-color-secondary);
+    //                 transition: color 0.3s;
+    //             }
 
-                &.p-highlight {
-                    .p-steps-number {
-                        background-color: var(--primary-color);
-                        border-color: var(--primary-color);
-                    }
+    //             &.p-highlight {
+    //                 .p-steps-number {
+    //                     background-color: var(--primary-color);
+    //                     border-color: var(--primary-color);
+    //                 }
 
-                    .p-steps-title {
-                        color: var(--primary-color);
-                        font-weight: 600;
-                    }
-                }
+    //                 .p-steps-title {
+    //                     color: var(--primary-color);
+    //                     font-weight: 600;
+    //                 }
+    //             }
 
-                &.p-steps-done {
-                    .p-steps-number {
-                        background-color: var(--green-500);
-                        border-color: var(--green-500);
-                    }
+    //             &.p-steps-done {
+    //                 .p-steps-number {
+    //                     background-color: var(--green-500);
+    //                     border-color: var(--green-500);
+    //                 }
 
-                    .p-steps-title {
-                        color: var(--text-color);
-                    }
+    //                 .p-steps-title {
+    //                     color: var(--text-color);
+    //                 }
 
-                    &::after {
-                        background-color: var(--green-500);
-                    }
-                }
-            }
-        }
-    }
+    //                 &::after {
+    //                     background-color: var(--green-500);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     .p-stepper .p-stepper-nav {
         position: relative;
@@ -179,10 +179,10 @@
         border: 1px solid #e2e8f0;
         border-width: 2px;
         background: #ffffff;
-        min-width: 2rem;
-        height: 2rem;
+        min-width: 2.5rem;
+        height: 2.5rem;
         line-height: 2rem;
-        font-size: 1.143rem;
+        font-size: 1.43rem;
         border-radius: 50%;
         transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, outline-color 0.2s;
     }
@@ -202,7 +202,7 @@
 
     .p-stepper .p-stepper-header.p-highlight .p-stepper-number {
         background: #EFF6FF;
-        color: #1D4ED8;
+        color: var(--primary-color);
     }
 
     .p-stepper .p-stepper-header.p-highlight .p-stepper-title {
@@ -216,7 +216,7 @@
     }
 
     .p-stepper .p-stepper-header:has(~ .p-highlight) .p-stepper-separator {
-        background-color: #3B82F6;
+        background-color: var(--primary-color);
     }
 
     .p-stepper .p-stepper-panels {
@@ -287,12 +287,12 @@
     }
 
     .p-stepper .p-stepper-header.p-highlight .p-stepper-number {
-        background: #ffffff;
-        color: #3B82F6;
+        color: #ffffff;
+        background: var(--primary-color);
     }
 
     .p-stepper .p-stepper-header.p-highlight .p-stepper-title {
-        color: #3B82F6;
+        color: var(--primary-color);
     }
 
     .p-steps .p-steps-item .p-menuitem-link .p-steps-number {

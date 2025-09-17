@@ -37,6 +37,7 @@ export class BasicDataComponent implements OnInit, OnDestroy {
     this.loadInitialData();
   }
 
+  // CORREGIDO: Se reordena la secuencia de inicialización
   private loadInitialData(): void {
     forkJoin({
       projectData: this.http.get<any>('assets/demo/data/project-creation-data.json'),
@@ -47,8 +48,13 @@ export class BasicDataComponent implements OnInit, OnDestroy {
       this.groupFormStructure();
       this.buildForm();
       this.initializeSelects();
-      this.setupCascadingSelects();
+
+      // 1. Cargar el borrador PRIMERO para que los valores estén en el formulario
       this.loadDraftData();
+
+      // 2. Configurar los selectores DESPUÉS para que reaccionen a los valores del borrador
+      this.setupCascadingSelects();
+
       this.listenToFormChanges();
     });
   }
@@ -74,12 +80,9 @@ export class BasicDataComponent implements OnInit, OnDestroy {
     this.form = this.fb.group(formControls);
   }
 
-  // MODIFICADO: Acepta el nombre del campo (fieldName) y el origen de los indicadores (indicatorSource)
   showIndicatorModal(fieldName: string, indicatorSource: string) {
     const indicatorsArray = this.form.get(fieldName) as FormArray;
     const existingIndicators = indicatorsArray.value.map((i: any) => i.id);
-
-    // Usa el indicatorSource para obtener la lista correcta de indicadores del projectData
     const availableIndicators = (this.projectData[indicatorSource] || []).filter((i: any) => !existingIndicators.includes(i.id));
 
     this.ref = this.dialogService.open(IndicatorModalComponent, {
@@ -92,12 +95,11 @@ export class BasicDataComponent implements OnInit, OnDestroy {
     });
 
     this.ref.onClose.pipe(filter(result => !!result)).subscribe((indicator) => {
-      // Pasa el fieldName a addIndicator para que sepa a qué array añadirlo
       this.addIndicator(indicator, fieldName);
     });
   }
 
-  // MODIFICADO: Acepta el fieldName para saber en qué FormArray trabajar
+  // CORREGIDO: Se fuerza el guardado del borrador
   addIndicator(indicator: any, fieldName: string) {
     const indicatorGroup = this.fb.group({
       id: [indicator.id],
@@ -107,12 +109,18 @@ export class BasicDataComponent implements OnInit, OnDestroy {
     });
     const indicatorsArray = this.form.get(fieldName) as FormArray;
     indicatorsArray.push(indicatorGroup);
+
+    // Forzar la actualización del estado para guardar los indicadores
+    this.projectStateService.updateDraft(this.form.getRawValue());
   }
 
-  // MODIFICADO: Acepta el fieldName para saber de qué FormArray eliminar
+  // CORREGIDO: Se fuerza el guardado del borrador
   removeIndicator(index: number, fieldName: string) {
     const indicatorsArray = this.form.get(fieldName) as FormArray;
     indicatorsArray.removeAt(index);
+
+    // Forzar la actualización del estado para guardar los indicadores
+    this.projectStateService.updateDraft(this.form.getRawValue());
   }
 
   private initializeSelects(): void {
@@ -151,26 +159,41 @@ export class BasicDataComponent implements OnInit, OnDestroy {
     }
   }
 
-  // MODIFICADO: Carga los datos de los borradores en las secciones correctas
+  // CORREGIDO: Lógica de carga de indicadores y patchValue
   private loadDraftData(): void {
     const draft = this.projectStateService.getCurrentDraft();
-    if (!draft) {
+    if (!draft || Object.keys(draft).length === 0) {
       return;
     }
 
+    // Usa un método sin emisión de eventos para no disparar el listener de guardado
+    this.form.patchValue(draft, { emitEvent: false });
+
     // Carga los indicadores de impacto si existen en el borrador
-    if (Array.isArray(draft.indicators)) {
-      draft.indicators.forEach((i: any) => this.addIndicator(i, 'impactIndicators'));
+    if (Array.isArray(draft.impactIndicators)) {
+      draft.impactIndicators.forEach((i: any) => {
+        const indicatorGroup = this.fb.group({
+          id: [i.id],
+          name: [i.name],
+          unit: [i.unit],
+          goal: [i.goal, Validators.required]
+        });
+        (this.form.get('impactIndicators') as FormArray).push(indicatorGroup, { emitEvent: false });
+      });
     }
 
     // Carga los indicadores de alcance si existen en el borrador
-    if (Array.isArray(draft.indicators)) {
-      draft.indicators.forEach((i: any) => this.addIndicator(i, 'reachIndicators'));
+    if (Array.isArray(draft.reachIndicators)) {
+      draft.reachIndicators.forEach((i: any) => {
+        const indicatorGroup = this.fb.group({
+          id: [i.id],
+          name: [i.name],
+          unit: [i.unit],
+          goal: [i.goal, Validators.required]
+        });
+        (this.form.get('reachIndicators') as FormArray).push(indicatorGroup, { emitEvent: false });
+      });
     }
-
-    // Carga el resto del formulario, excluyendo las propiedades de los indicadores
-    const { indicators, ...restOfDraft } = draft;
-    this.form.patchValue(restOfDraft, { emitEvent: false });
   }
 
   private listenToFormChanges(): void {

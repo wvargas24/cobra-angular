@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Project } from '../models/project'; // Ajustamos la ruta al modelo
+import { ProjectDraft } from '../models/project-draft'; // <-- CAMBIO: Importar la nueva interfaz
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectStateService {
-  // Usamos Partial<Project> para el borrador, inicializado con un objeto vacío.
-  private projectDraftSubject = new BehaviorSubject<Partial<Project>>({});
+  // CAMBIO: Usar la interfaz ProjectDraft para el estado del borrador
+  private projectDraftSubject = new BehaviorSubject<ProjectDraft>({});
   projectDraft$ = this.projectDraftSubject.asObservable();
 
   private readonly DRAFT_STORAGE_KEY = 'projectDraft';
@@ -23,7 +23,8 @@ export class ProjectStateService {
     const draftJson = localStorage.getItem(this.DRAFT_STORAGE_KEY);
     if (draftJson) {
       try {
-        const draft = JSON.parse(draftJson);
+        // El objeto parseado debe ser compatible con ProjectDraft
+        const draft: ProjectDraft = JSON.parse(draftJson);
         this.projectDraftSubject.next(draft);
       } catch (e) {
         console.error("Error parsing project draft from localStorage", e);
@@ -34,9 +35,9 @@ export class ProjectStateService {
 
   /**
    * Actualiza el estado del borrador y lo persiste en localStorage.
-   * @param updatedData Un objeto parcial con los nuevos datos del proyecto.
+   * @param updatedData El objeto de borrador completo.
    */
-  updateDraft(updatedData: Partial<Project>) {
+  updateDraft(updatedData: ProjectDraft) {
     const currentDraft = this.projectDraftSubject.getValue();
     const newDraft = { ...currentDraft, ...updatedData };
     this.projectDraftSubject.next(newDraft);
@@ -48,7 +49,7 @@ export class ProjectStateService {
    * Obtiene el valor actual del borrador.
    * @returns El objeto de borrador actual.
    */
-  getCurrentDraft(): Partial<Project> {
+  getCurrentDraft(): ProjectDraft {
     return this.projectDraftSubject.getValue();
   }
 

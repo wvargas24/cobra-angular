@@ -4,6 +4,8 @@
         <p-card styleClass="mb-4">
             <!-- Usa el nombre de la sección como título de la tarjeta -->
             <ng-template pTemplate="title">
+                <!-- AÑADIDO: Ícono para la sección -->
+                <i [class]="group.fields[0].sectionIcon" class="mr-2 text-primary"></i>
                 {{ group.section }}
             </ng-template>
 
@@ -11,7 +13,11 @@
                 <!-- Itera sobre los campos dentro del grupo actual -->
                 <ng-container *ngFor="let field of group.fields">
                     <div class="p-field mb-3">
-                        <label [for]="field.name">{{ field.label }}</label>
+                        <!-- AÑADIDO: Ícono para el label del campo -->
+                        <label [for]="field.name" class="flex mb-2">
+                            <i [class]="field.icon" class="mr-2 text-primary"></i>
+                            {{ field.label }}
+                        </label>
 
                         <div [ngSwitch]="field.type">
                             <!-- Campo de Texto -->
@@ -31,27 +37,24 @@
                                 </p-dropdown>
                             </ng-container>
 
-                            <!-- Selector de Indicadores (MODIFICADO) -->
+                            <!-- Selector de Indicadores -->
                             <div *ngSwitchCase="'indicator-selector'">
-                                <!-- Llama a la función con el nombre del campo y el origen de datos -->
                                 <button pButton type="button" [label]="field.buttonLabel" (click)="showIndicatorModal(field.name, field.indicatorSource)" class="p-button-secondary mb-2"></button>
 
-                                <p-table #indicatorTable [value]="form.get(field.name)?.value || []" styleClass="p-datatable-sm">
+                                <p-table #indicatorTable [value]="form.get(field.name)?.value || []" [rowHover]="true" styleClass="p-datatable-md p-datatable-striped">
                                     <ng-template pTemplate="header">
                                         <tr>
                                             <th>Indicador</th>
-                                            <th>Unidad de Medida</th>
-                                            <th>Meta</th>
+                                            <th class="text-center">Unidad de Medida</th>
+                                            <th class="text-center">Meta</th>
                                             <th></th>
                                         </tr>
                                     </ng-template>
-                                    <!-- Añadimos 'let i = index' para obtener el índice -->
                                     <ng-template pTemplate="body" let-indicator let-i="rowIndex">
                                         <tr>
                                             <td>{{ indicator.name }}</td>
-                                            <td>{{ indicator.unit }}</td>
-                                            <td>{{ indicator.goal }}</td>
-                                            <!-- Llama a la función de eliminar con el índice y el nombre del campo -->
+                                            <td class="text-center">{{ indicator.unit }}</td>
+                                            <td class="text-center">{{ indicator.goal }}</td>
                                             <td><button pButton type="button" icon="pi pi-trash" (click)="removeIndicator(i, field.name)" class="p-button-danger p-button-text"></button></td>
                                         </tr>
                                     </ng-template>

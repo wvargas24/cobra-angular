@@ -2,90 +2,110 @@
   {
     "step": 1,
     "section": "Clasificación del Proyecto",
+    "sectionIcon": "pi pi-sitemap",
     "name": "lineOfAction",
     "label": "Línea de Acción",
     "type": "select",
     "optionsSource": "linesOfAction",
-    "placeholder": "Selecciona una línea de acción"
+    "placeholder": "Selecciona una línea de acción",
+    "icon": "pi pi-filter"
   },
   {
     "step": 1,
     "section": "Clasificación del Proyecto",
+    "sectionIcon": "pi pi-sitemap",
     "name": "type",
     "label": "Tipo",
     "type": "select",
     "dependsOn": "lineOfAction",
     "optionsSource": "types",
-    "placeholder": "Selecciona un tipo"
+    "placeholder": "Selecciona un tipo",
+    "icon": "pi pi-tag"
   },
   {
     "step": 1,
     "section": "Clasificación del Proyecto",
+    "sectionIcon": "pi pi-sitemap",
     "name": "subtype",
     "label": "Subtipo",
     "type": "select",
     "dependsOn": "type",
     "optionsSource": "subtypes",
-    "placeholder": "Selecciona un subtipo"
+    "placeholder": "Selecciona un subtipo",
+    "icon": "pi pi-tags"
   },
   {
     "step": 1,
     "section": "Detalles del Proyecto",
+    "sectionIcon": "pi pi-info-circle",
     "name": "abbreviatedName",
     "label": "Nombre Abreviado",
     "type": "text",
     "maxLength": 255,
-    "placeholder": "Máximo 255 caracteres"
+    "placeholder": "Máximo 255 caracteres",
+    "icon": "pi pi-file-edit"
   },
   {
     "step": 1,
     "section": "Detalles del Proyecto",
+    "sectionIcon": "pi pi-info-circle",
     "name": "supervisor",
     "label": "Supervisor",
     "type": "select",
     "optionsSource": "supervisors",
-    "placeholder": "Selecciona un supervisor"
+    "placeholder": "Selecciona un supervisor",
+    "icon": "pi pi-user"
   },
   {
     "step": 1,
     "section": "Detalles del Proyecto",
+    "sectionIcon": "pi pi-info-circle",
     "name": "projectObjective",
     "label": "Objeto del Proyecto",
     "type": "textarea",
-    "placeholder": "Describe el objetivo del proyecto"
+    "placeholder": "Describe el objetivo del proyecto",
+    "icon": "pi pi-bullseye"
   },
   {
     "step": 1,
     "section": "Detalles del Proyecto",
+    "sectionIcon": "pi pi-info-circle",
     "name": "scope",
     "label": "Alcance",
     "type": "textarea",
-    "placeholder": "Describe el alcance del proyecto"
+    "placeholder": "Describe el alcance del proyecto",
+    "icon": "pi pi-arrows-h"
   },
   {
     "step": 1,
     "section": "Detalles del Proyecto",
+    "sectionIcon": "pi pi-info-circle",
     "name": "observations",
     "label": "Observaciones",
     "type": "textarea",
-    "placeholder": "Añade observaciones adicionales"
+    "placeholder": "Añade observaciones adicionales",
+    "icon": "pi pi-eye"
   },
   {
     "step": 1,
     "section": "Indicadores",
+    "sectionIcon": "pi pi-chart-line",
     "name": "impactIndicators",
     "type": "indicator-selector",
     "buttonLabel": "Seleccionar Indicadores de Impacto",
     "modalTitle": "Añadir Indicador de Impacto",
-    "indicatorSource": "impactIndicators"
+    "indicatorSource": "impactIndicators",
+    "icon": "pi pi-chart-bar"
   },
   {
     "step": 1,
     "section": "Indicadores",
+    "sectionIcon": "pi pi-chart-line",
     "name": "reachIndicators",
     "type": "indicator-selector",
     "buttonLabel": "Seleccionar Indicadores de Alcance",
     "modalTitle": "Añadir Indicador de Alcance",
-    "indicatorSource": "reachIndicators"
+    "indicatorSource": "reachIndicators",
+    "icon": "pi pi-chart-pie"
   }
 ]

@@ -1,8 +1,8 @@
 <div class="p-fluid" *ngIf="form" [formGroup]="form">
     <div class="p-field mb-3">
         <label for="indicator">Indicador</label>
-        <!-- Dropdown vinculado al formControl 'indicator' y poblado con la lista de indicadores -->
-        <p-dropdown id="indicator" formControlName="indicator" [options]="indicators" optionLabel="name" placeholder="Selecciona un indicador">
+        <!-- CORREGIDO: Añadido el filtro de búsqueda -->
+        <p-dropdown id="indicator" formControlName="indicator" [options]="indicators" optionLabel="name" placeholder="Selecciona un indicador" [filter]="true" filterBy="name">
         </p-dropdown>
     </div>
 

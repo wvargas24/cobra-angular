@@ -1,0 +1,25 @@
+:host ::ng-deep {
+
+    .p-card {
+        &-title {
+            font-size: 1.225rem;
+            font-weight: 600;
+            color: var(--primary-color);
+
+            .pi {
+                font-size: 1.225rem;
+            }
+        }
+    }
+
+    .p-datatable {
+        .p-datatable-thead {
+            >tr {
+                >th {
+                    font-weight: 700;
+                    color: var(--gray-900);
+                }
+            }
+        }
+    }
+}
